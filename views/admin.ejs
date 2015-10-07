@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+    <head>
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+
+        <script src='/javascripts/jquery-2.1.4.min.js'></script>
+        <script src='/socket.io/socket.io.js'></script>
+
+        <script src='/javascripts/admin.js'></script>
+    </head>
+    <body>
+        <table id="panes">
+            <tr>
+                <td>
+                    <table id="grid">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <tr class='minimize-row'>
+                <td>
+                    <table id="players">
+                        <tr id="names"></tr>
+                        <tr id="scores"></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <div id="overlay-outer"><div id="overlay"></div></div>
+    </body>
 </html>

@@ -4,28 +4,35 @@ var fs = require('fs');
 var data = JSON.parse(fs.readFileSync('./data/test.json'));
 var players = {};
 
+
 io.on('connection', function(socket) {
-    players[socket.id] = {
-        score: 0
-    };
+    socket.on('name', function(name) {
+        players[socket.id] = {
+            name: name,
+            score: 0,
+            admin: name == 'admin' // TODO: add more security
+        };
+        io.emit('players', players);
 
-    console.log(players);
-
-    socket.emit('board', data.categories.map(function(category) {
-        return category.name;
-    }), data.multiplier);
+        socket.emit('board', data.categories.map(function(category) {
+            return category.name;
+        }), data.multiplier);
+    });
 
     socket.on('pick', function(j, i) {
-        console.log('pick', j, i);
         io.emit('pick', j, i, data.categories[j].questions[i].question);
     });
 
     socket.on('unpick', function() {
+        if (!players[socket.id].admin)
+            return;
+
         io.emit('unpick');
     });
 
     socket.on('disconnect', function() {
         delete players[socket.id];
+        io.emit('players', players);
     });
 });
 

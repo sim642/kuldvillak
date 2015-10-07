@@ -7,6 +7,20 @@ $('#overlay-outer').hide();
 
 socket.emit('name', prompt('Nimi: '));
 
+socket.on('players', function(players) {
+    $('#names').empty();
+    $('#scores').empty();
+
+    for (var id in players) {
+        var player = players[id];
+
+        if (!player.admin) {
+            $('#names').append($('<td></td>').text(player.name));
+            $('#scores').append($('<td></td>').text(player.score));
+        }
+    }
+});
+
 socket.on('board', function(categories, multiplier) {
     var $grid = $('#grid');
 
@@ -71,6 +85,10 @@ socket.on('pick', function(j, i, question) {
             $cell.html("&nbsp;");
         });*/
     }
+});
+
+$("#overlay-outer").click(function() {
+    socket.emit('unpick');
 });
 
 socket.on('unpick', function() {
