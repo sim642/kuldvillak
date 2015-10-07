@@ -72,7 +72,11 @@ socket.on('pick', function(j, i, question) {
 });
 
 $("#overlay-outer").click(function() {
-    $(this).fadeOut();
+    socket.emit('unpick');
+});
+
+socket.on('unpick', function() {
+    $("#overlay-outer").fadeOut();
 });
 
 
