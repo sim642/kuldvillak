@@ -1,0 +1,155 @@
+{
+    "multiplier": 1,
+    "categories": [
+        {
+            "name": "Karu",
+            "questions": [
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                }
+            ]
+        },
+        {
+            "name": "Siil",
+            "questions": [
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                }
+            ]
+        },
+        {
+            "name": "Mäger",
+            "questions": [
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                }
+            ]
+        },
+        {
+            "name": "Eesel",
+            "questions": [
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                }
+            ]
+        },
+        {
+            "name": "Põder",
+            "questions": [
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                }
+            ]
+        },
+        {
+            "name": "Vambola",
+            "questions": [
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                },
+                {
+                    "question": "asd",
+                    "answer": "qwe"
+                }
+            ]
+        }
+    ]
+}

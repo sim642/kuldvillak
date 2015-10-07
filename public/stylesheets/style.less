@@ -1,18 +1,52 @@
-html, body, #grid {
+.fullsize {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
+}
 
-    vertical-align: middle;
-    text-align: center;
+html, body {
+    .fullsize;
 }
 
 #grid {
+    .fullsize;
+
+    table-layout: fixed;
+
+    vertical-align: middle;
+    text-align: center;
+
     background-color: #007;
+
+    td {
+        background: linear-gradient(to bottom right, #44B, #00B);
+        color: yellow;
+
+        width: 100% / 6;
+        height: 100% / 6;
+    }
+
+    thead td {
+        font-size: 6vh;
+        font-variant: small-caps;
+        overflow: hidden;
+    }
+
+    tbody td {
+        font-size: 8vh;
+
+        &.active {
+            cursor: pointer;
+
+            &:hover {
+                background: linear-gradient(to bottom right, #55B, #22B);
+            }
+        }
+    }
 }
 
-#overlay {
+#overlay-outer {
     position: absolute;
     top: 0;
     left: 0;
@@ -26,31 +60,8 @@ html, body, #grid {
     font-size: 10vh;
 }
 
-#overtext {
+#overlay {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
-}
-
-#grid td {
-    /*background-color: blue;*/
-    background: linear-gradient(to bottom right, #44B, #00B);
-    color: yellow;
-
-    width: 16.67%;
-    height: 16.67%;
-}
-
-
-#grid .head td {
-    font-size: 5vh;
-}
-
-#grid .nums td {
-    font-size: 8vh;
-    cursor: pointer;
-}
-
-#grid .nums td:hover {
-    background: linear-gradient(to bottom right, #55B, #22B);
 }
