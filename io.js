@@ -17,13 +17,18 @@ var curp = null, curj = null, curi = null;
 var answerers = null;
 
 io.on('connection', function(socket) {
-    socket.on('name', function(name) {
-        players[socket.id] = {
+    var player = null;
+
+    socket.on('name', function(name, callback) {
+        player = players[socket.id] = {
             name: name,
             score: 0,
             admin: name == 'admin' // TODO: add more security
         };
-        if (players[socket.id].admin)
+
+        callback(socket.id, player);
+
+        if (player.admin)
             socket.join('admin');
 
         io.emit('players', players);
@@ -45,7 +50,7 @@ io.on('connection', function(socket) {
     });
 
     socket.on('unpick', function() {
-        if (!players[socket.id].admin)
+        if (!player.admin)
             return;
 
         io.emit('unpick');
@@ -56,7 +61,7 @@ io.on('connection', function(socket) {
     });
 
     socket.on('score', function(id, correct) {
-        if (!players[socket.id].admin)
+        if (!player.admin)
             return;
 
         players[id].score += (correct ? 1 : -1) * (curi + 1) * 10 * data.multiplier;
@@ -66,13 +71,13 @@ io.on('connection', function(socket) {
     socket.on('answer', function() {
         if (answerers !== null && answerers.indexOf(socket.id) < 0) {
             answerers.push(socket.id);
-            console.log(answerers);
             io.emit('answerers', answerers);
         }
     });
 
     socket.on('disconnect', function() {
         delete players[socket.id];
+        player = null;
         io.emit('players', players);
     });
 });

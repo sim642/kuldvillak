@@ -2,10 +2,14 @@ var socket = io();
 
 $(function() {
 
+var myid, myplayer;
 
 $('#overlay-outer').hide();
 
-socket.emit('name', prompt('Nimi: '));
+socket.emit('name', prompt('Nimi: '), function(id, player) {
+    myid = id;
+    myplayer = player;
+});
 
 socket.on('players', function(players) {
     $('#names').empty();
