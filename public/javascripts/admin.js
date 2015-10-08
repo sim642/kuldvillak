@@ -13,8 +13,8 @@ socket.on('players', function(players) {
 
     $.each(players, function(id, player) {
         if (!player.admin) {
-            $('#names').append($('<td></td>').text(player.name));
-            $score = $('<td></td>');
+            $('#names').append($('<td></td>').attr('data-id', id).text(player.name));
+            $score = $('<td></td>').attr('data-id', id);
 
             var decr = $('<button></button>').text('-').click(function() {
                 socket.emit('score', id, false);
@@ -95,7 +95,7 @@ socket.on('pick', function(j, i, question) {
             "left": "0px",
             "top": "0px",
             "width": "100%",
-            "height": $('#grid-pane').outerHeight(),
+            "height": 100 * $('#grid-pane').outerHeight() / $(window).height() + '%',
             "opacity": "1.0",
             "fontSize": "15vh"
         }, "slow", function() {
@@ -115,6 +115,15 @@ $("#overlay-outer").click(function() {
 socket.on('unpick', function() {
     $("#overlay-outer").fadeOut();
     $('#players button').hide();
+    $('#players td').css('background-color', '');
+});
+
+socket.on('answerers', function(answerers) {
+    console.log(answerers);
+    $.each(answerers, function(i, id) {
+        var val = i * 64
+        $('#names td[data-id="' + id + '"]').css('background-color', 'rgb(255, ' + val + ', ' + val + ')');
+    });
 });
 
 

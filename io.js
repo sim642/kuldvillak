@@ -14,6 +14,7 @@ for (var i = 0; i < 5; i++)
 }
 
 var curp = null, curj = null, curi = null;
+var answerers = null;
 
 io.on('connection', function(socket) {
     socket.on('name', function(name) {
@@ -34,6 +35,7 @@ io.on('connection', function(socket) {
         curj = j;
         curi = i;
         actives[i][j] = false;
+        answerers = [];
     });
 
     socket.on('unpick', function() {
@@ -44,6 +46,7 @@ io.on('connection', function(socket) {
 
         curj = null;
         curi = null;
+        answerers = null;
     });
 
     socket.on('score', function(id, correct) {
@@ -52,6 +55,14 @@ io.on('connection', function(socket) {
 
         players[id].score += (correct ? 1 : -1) * (curi + 1) * 10 * data.multiplier;
         io.emit('players', players);
+    });
+
+    socket.on('answer', function() {
+        if (answerers !== null && answerers.indexOf(socket.id) < 0) {
+            answerers.push(socket.id);
+            console.log(answerers);
+            io.emit('answerers', answerers);
+        }
     });
 
     socket.on('disconnect', function() {
