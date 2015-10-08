@@ -7,7 +7,7 @@ $('#overlay-outer').hide();
 
 socket.emit('name', prompt('Nimi: '));
 
-socket.on('board', function(categories, multiplier) {
+socket.on('board', function(categories, actives, multiplier) {
     var $grid = $('#grid');
 
     {

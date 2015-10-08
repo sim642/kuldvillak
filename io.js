@@ -4,6 +4,14 @@ var fs = require('fs');
 var data = JSON.parse(fs.readFileSync('./data/test.json'));
 var players = {};
 
+var actives = [];
+for (var i = 0; i < 5; i++)
+{
+    var row = [];
+    for (var j = 0; j < 6; j++)
+        row.push(true);
+    actives.push(row);
+}
 
 io.on('connection', function(socket) {
     socket.on('name', function(name) {
@@ -16,11 +24,12 @@ io.on('connection', function(socket) {
 
         socket.emit('board', data.categories.map(function(category) {
             return category.name;
-        }), data.multiplier);
+        }), actives, data.multiplier);
     });
 
     socket.on('pick', function(j, i) {
         io.emit('pick', j, i, data.categories[j].questions[i].question);
+        actives[i][j] = false;
     });
 
     socket.on('unpick', function() {

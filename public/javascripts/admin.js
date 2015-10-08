@@ -21,7 +21,7 @@ socket.on('players', function(players) {
     }
 });
 
-socket.on('board', function(categories, multiplier) {
+socket.on('board', function(categories, actives, multiplier) {
     var $grid = $('#grid');
     $grid.empty();
 
@@ -41,10 +41,15 @@ socket.on('board', function(categories, multiplier) {
         var row = $("<tr></tr>").addClass('values');
 
         for (var j = 0; j < 6; j++) {
-            var cell = $("<td></td>").addClass("active");
+            var cell = $("<td></td>");
             cell.attr('data-i', i);
             cell.attr('data-j', j);
-            cell.text((i + 1) * 10 * multiplier);
+
+            if (actives[i][j]) {
+                cell.addClass('active');
+                cell.text((i + 1) * 10 * multiplier);
+            }
+
             row.append(cell);
         }
 
