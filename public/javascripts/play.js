@@ -39,7 +39,7 @@ socket.on('board', function(categories, actives, multiplier) {
 
     $("#grid tbody td").click(function() {
         var $cell = $(this);
-        socket.emit('pick', $cell.attr('data-j'), $cell.attr('data-i'));
+        socket.emit('pick', parseInt($cell.attr('data-j')), parseInt($cell.attr('data-i')));
     });
 });
 

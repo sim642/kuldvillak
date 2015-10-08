@@ -12,12 +12,25 @@ socket.on('players', function(players) {
     $('#scores').empty();
 
     for (var id in players) {
-        var player = players[id];
+        (function(id) {
+            var player = players[id];
 
-        if (!player.admin) {
-            $('#names').append($('<td></td>').text(player.name));
-            $('#scores').append($('<td></td>').text(player.score));
-        }
+            if (!player.admin) {
+                $('#names').append($('<td></td>').text(player.name));
+                $score = $('<td></td>');
+
+                var decr = $('<button></button>').text('-').click(function() {
+                    socket.emit('score', id, false);
+                });
+                var incr = $('<button></button>').text('+').click(function() {
+                    socket.emit('score', id, true);
+                });
+
+                $score.append(decr).append(player.score).append(incr);
+                $('#scores').append($score);
+            }
+
+        })(id);
     }
 });
 
@@ -58,7 +71,7 @@ socket.on('board', function(categories, actives, multiplier) {
 
     $("#grid .values td").click(function() {
         var $cell = $(this);
-        socket.emit('pick', $cell.attr('data-j'), $cell.attr('data-i'));
+        socket.emit('pick', parseInt($cell.attr('data-j')), parseInt($cell.attr('data-i')));
     });
 });
 

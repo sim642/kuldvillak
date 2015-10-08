@@ -13,6 +13,8 @@ for (var i = 0; i < 5; i++)
     actives.push(row);
 }
 
+var curp = null, curj = null, curi = null;
+
 io.on('connection', function(socket) {
     socket.on('name', function(name) {
         players[socket.id] = {
@@ -29,6 +31,8 @@ io.on('connection', function(socket) {
 
     socket.on('pick', function(j, i) {
         io.emit('pick', j, i, data.categories[j].questions[i].question);
+        curj = j;
+        curi = i;
         actives[i][j] = false;
     });
 
@@ -37,6 +41,17 @@ io.on('connection', function(socket) {
             return;
 
         io.emit('unpick');
+
+        curj = null;
+        curi = null;
+    });
+
+    socket.on('score', function(id, correct) {
+        if (!players[socket.id].admin)
+            return;
+
+        players[id].score += (correct ? 1 : -1) * (curi + 1) * 10 * data.multiplier;
+        io.emit('players', players);
     });
 
     socket.on('disconnect', function() {
