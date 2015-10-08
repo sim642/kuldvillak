@@ -118,6 +118,10 @@ socket.on('unpick', function() {
     $('#players td').css('background-color', '');
 });
 
+socket.on('answer', function(answer) {
+    $('#overlay').append("<br>" + answer);
+});
+
 socket.on('answerers', function(answerers) {
     console.log(answerers);
     $.each(answerers, function(i, id) {

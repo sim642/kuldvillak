@@ -23,6 +23,9 @@ io.on('connection', function(socket) {
             score: 0,
             admin: name == 'admin' // TODO: add more security
         };
+        if (players[socket.id].admin)
+            socket.join('admin');
+
         io.emit('players', players);
 
         socket.emit('board', data.categories.map(function(category) {
@@ -32,6 +35,9 @@ io.on('connection', function(socket) {
 
     socket.on('pick', function(j, i) {
         io.emit('pick', j, i, data.categories[j].questions[i].question);
+
+        io.to('admin').emit('answer', data.categories[j].questions[i].answer);
+
         curj = j;
         curi = i;
         actives[i][j] = false;
