@@ -23,9 +23,10 @@ socket.on('players', function(players) {
 
 socket.on('board', function(categories, multiplier) {
     var $grid = $('#grid');
+    $grid.empty();
 
     {
-        var row = $('<tr></tr>');
+        var row = $('<tr></tr>').addClass('heading');
 
         for (var j = 0; j < 6; j++) {
             var cell = $("<td></td>");
@@ -33,12 +34,11 @@ socket.on('board', function(categories, multiplier) {
             row.append(cell);
         }
 
-        $('thead', $grid).empty().append(row);
+        $grid.append(row);
     }
 
-    $('tbody', $grid).empty();
     for (var i = 0; i < 5; i++) {
-        var row = $("<tr></tr>");
+        var row = $("<tr></tr>").addClass('values');
 
         for (var j = 0; j < 6; j++) {
             var cell = $("<td></td>").addClass("active");
@@ -48,17 +48,17 @@ socket.on('board', function(categories, multiplier) {
             row.append(cell);
         }
 
-        $('tbody', $grid).append(row);
+        $grid.append(row);
     }
 
-    $("#grid tbody td").click(function() {
+    $("#grid .values td").click(function() {
         var $cell = $(this);
         socket.emit('pick', $cell.attr('data-j'), $cell.attr('data-i'));
     });
 });
 
 socket.on('pick', function(j, i, question) {
-    $cell = $('#grid tbody td[data-j="' + j + '"][data-i="' + i + '"]');
+    $cell = $('#grid .values td[data-j="' + j + '"][data-i="' + i + '"]');
     if ($cell.text() != "") {
         $cell.removeClass("active");
         $("#overlay").text($cell.data('j') + "-" + $cell.data('i') + " " + $cell.text() + " " + question);
@@ -68,15 +68,17 @@ socket.on('pick', function(j, i, question) {
             "top": $cell.offset().top + "px",
             "width": 100 * $cell.outerWidth() / $(window).width() + "%",
             "height": 100 * $cell.outerHeight() / $(window).height() + "%",
-            "opacity": "0.0"
+            "opacity": "0.0",
+            "fontSize": $cell.css("font-size")
         }).show();
 
         $("#overlay-outer").animate({
             "left": "0px",
             "top": "0px",
             "width": "100%",
-            "height": "85%",
-            "opacity": "1.0"
+            "height": $('#grid-pane').outerHeight(),
+            "opacity": "1.0",
+            "fontSize": "15vh"
         }, "slow", function() {
             $cell.text("");
         });
