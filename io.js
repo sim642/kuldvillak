@@ -75,6 +75,19 @@ io.on('connection', function(socket) {
         }
     });
 
+    socket.on('timer', function(id) {
+        if (!player.admin)
+            return;
+
+        io.emit('timer', id);
+        console.log('timer', id);
+
+        setTimeout(function() {
+            io.emit('timeout', id);
+            console.log('timeout', id);
+        }, 5000);
+    });
+
     socket.on('disconnect', function() {
         delete players[socket.id];
         player = null;

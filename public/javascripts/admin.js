@@ -17,17 +17,21 @@ socket.on('players', function(players) {
 
     $.each(players, function(id, player) {
         if (!player.admin) {
-            $('#names').append($('<td></td>').attr('data-id', id).text(player.name));
-            $score = $('<td></td>').attr('data-id', id);
+            $name = $('<td></td>').attr('data-id', id).text(player.name);
+            $name.click(function() {
+                socket.emit('timer', id);
+            });
 
+            $score = $('<td></td>').attr('data-id', id);
             var decr = $('<button></button>').text('-').click(function() {
                 socket.emit('score', id, false);
             });
             var incr = $('<button></button>').text('+').click(function() {
                 socket.emit('score', id, true);
             });
-
             $score.append(decr).append(player.score).append(incr);
+
+            $('#names').append($name);
             $('#scores').append($score);
         }
     });
@@ -132,6 +136,14 @@ socket.on('answerers', function(answerers) {
         var val = i * 64
         $('#names td[data-id="' + id + '"]').css('background-color', 'rgb(255, ' + val + ', ' + val + ')');
     });
+});
+
+socket.on('timer', function(id) {
+    $('#names td[data-id="' + id + '"]').css('background-color', 'green');
+});
+
+socket.on('timeout', function(id) {
+    $('#names td[data-id="' + id + '"]').css('background-color', '');
 });
 
 

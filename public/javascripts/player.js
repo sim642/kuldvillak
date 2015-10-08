@@ -18,4 +18,14 @@ $(document).keydown(function(e) {
         socket.emit('answer');
 });
 
+socket.on('timer', function(id) {
+    if (id == myid)
+        $('body').css('background-color', 'green');
+});
+
+socket.on('timeout', function(id) {
+    if (id == myid)
+        $('body').css('background-color', '');
+});
+
 });
