@@ -75,7 +75,7 @@ socket.on('pick', function(j, i, question) {
             "left": "0px",
             "top": "0px",
             "width": "100%",
-            "height": "100%",
+            "height": "85%",
             "opacity": "1.0"
         }, "slow", function() {
             $cell.text("");
