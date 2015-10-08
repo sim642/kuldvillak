@@ -11,27 +11,25 @@ socket.on('players', function(players) {
     $('#names').empty();
     $('#scores').empty();
 
-    for (var id in players) {
-        (function(id) {
-            var player = players[id];
+    $.each(players, function(id, player) {
+        if (!player.admin) {
+            $('#names').append($('<td></td>').text(player.name));
+            $score = $('<td></td>');
 
-            if (!player.admin) {
-                $('#names').append($('<td></td>').text(player.name));
-                $score = $('<td></td>');
+            var decr = $('<button></button>').text('-').click(function() {
+                socket.emit('score', id, false);
+            });
+            var incr = $('<button></button>').text('+').click(function() {
+                socket.emit('score', id, true);
+            });
 
-                var decr = $('<button></button>').text('-').click(function() {
-                    socket.emit('score', id, false);
-                });
-                var incr = $('<button></button>').text('+').click(function() {
-                    socket.emit('score', id, true);
-                });
+            $score.append(decr).append(player.score).append(incr);
+            $('#scores').append($score);
+        }
+    });
 
-                $score.append(decr).append(player.score).append(incr);
-                $('#scores').append($score);
-            }
-
-        })(id);
-    }
+    if (!$('#overlay-outer').is(':visible'))
+        $('#players button').hide();
 });
 
 socket.on('board', function(categories, actives, multiplier) {
@@ -71,7 +69,9 @@ socket.on('board', function(categories, actives, multiplier) {
 
     $("#grid .values td").click(function() {
         var $cell = $(this);
-        socket.emit('pick', parseInt($cell.attr('data-j')), parseInt($cell.attr('data-i')));
+        if ($cell.text() != "") {
+            socket.emit('pick', parseInt($cell.attr('data-j')), parseInt($cell.attr('data-i')));
+        }
     });
 });
 
@@ -80,6 +80,7 @@ socket.on('pick', function(j, i, question) {
     if ($cell.text() != "") {
         $cell.removeClass("active");
         $("#overlay").text($cell.data('j') + "-" + $cell.data('i') + " " + $cell.text() + " " + question);
+        $('#players button').show();
 
         $("#overlay-outer").css({
             "left": $cell.offset().left + "px",
@@ -113,6 +114,7 @@ $("#overlay-outer").click(function() {
 
 socket.on('unpick', function() {
     $("#overlay-outer").fadeOut();
+    $('#players button').hide();
 });
 
 
