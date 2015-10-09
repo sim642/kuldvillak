@@ -1,3 +1,12 @@
+@gridblue: #071278;
+@gridyellow: #d59f4c;
+
+@font-face {
+    font-family: 'Swiss911';
+    src: url('/fonts/Swiss911BT-Compressed.ttf') format('truetype');
+    font-weight: normal;
+}
+
 .fullsize {
     width: 100%;
     height: 100%;
@@ -37,8 +46,10 @@ html, body {
     background-color: #007;
 
     td {
-        background: linear-gradient(to bottom right, #44B, #00B);
-        color: yellow;
+        background-color: @gridblue;
+        color: @gridyellow;
+
+        font-family: 'Swiss911';
 
         width: 100% / 6;
         height: 100% / 6;
@@ -48,16 +59,20 @@ html, body {
         font-size: 6vh;
         font-variant: small-caps;
         overflow: hidden;
+
+        color: lighten(@gridblue, 80%);
     }
 
     .values td {
-        font-size: 8vh;
+        font-size: 10vh;
+        text-shadow: 0.8vh 0.8vh 0 black;
+        letter-spacing: 0.5vh;
 
         &.active {
             cursor: pointer;
 
             &:hover {
-                background: linear-gradient(to bottom right, #55B, #22B);
+                background-color: lighten(@gridblue, 10%);
             }
         }
     }
