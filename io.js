@@ -13,7 +13,7 @@ for (var i = 0; i < 5; i++)
     actives.push(row);
 }
 
-var curp = null, curj = null, curi = null;
+var curj = null, curi = null;
 var answerers = null;
 
 io.on('connection', function(socket) {
@@ -39,6 +39,9 @@ io.on('connection', function(socket) {
     });
 
     socket.on('pick', function(j, i) {
+        if (!player.admin)
+            return;
+
         io.emit('pick', j, i, data.categories[j].questions[i].question);
 
         io.to('admin').emit('answer', data.categories[j].questions[i].answer);
@@ -80,11 +83,9 @@ io.on('connection', function(socket) {
             return;
 
         io.emit('timer', id);
-        console.log('timer', id);
 
         setTimeout(function() {
             io.emit('timeout', id);
-            console.log('timeout', id);
         }, 5000);
     });
 
