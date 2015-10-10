@@ -96,7 +96,7 @@ socket.on('pick', function(j, i, question) {
             "width": 100 * $cell.outerWidth() / $(window).width() + "%",
             "height": 100 * $cell.outerHeight() / $(window).height() + "%",
             "opacity": "0.0",
-            "fontSize": $cell.css("font-size")
+            "fontSize": "1.5vh"
         }).show();
 
         $("#overlay-outer").animate({
@@ -105,7 +105,7 @@ socket.on('pick', function(j, i, question) {
             "width": "100%",
             "height": 100 * $('#grid-pane').outerHeight() / $(window).height() + '%',
             "opacity": "1.0",
-            "fontSize": "15vh"
+            "fontSize": "10vh"
         }, "slow", function() {
             $cell.text("");
         });
