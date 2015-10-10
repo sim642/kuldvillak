@@ -132,9 +132,8 @@ socket.on('answer', function(answer) {
 });
 
 socket.on('answerers', function(answerers) {
-    console.log(answerers);
     $.each(answerers, function(i, id) {
-        var val = i * 64
+        var val = i * 64;
         $('#names td[data-id="' + id + '"]').css('background-color', 'rgb(255, ' + val + ', ' + val + ')');
     });
 });

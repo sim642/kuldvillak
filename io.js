@@ -32,6 +32,7 @@ io.on('connection', function(socket) {
             socket.join('admin');
 
         io.emit('players', players);
+        io.emit('answerers', answerers);
 
         socket.emit('board', data.categories.map(function(category) {
             return category.name;
@@ -69,6 +70,7 @@ io.on('connection', function(socket) {
 
         players[id].score += (correct ? 1 : -1) * (curi + 1) * 10 * data.multiplier;
         io.emit('players', players);
+        io.emit('answerers', answerers);
     });
 
     socket.on('answer', function() {
@@ -93,6 +95,7 @@ io.on('connection', function(socket) {
         delete players[socket.id];
         player = null;
         io.emit('players', players);
+        io.emit('answerers', answerers);
     });
 });
 

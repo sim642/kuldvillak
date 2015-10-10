@@ -9,8 +9,24 @@ socket.emit('name', prompt('Nimi: '), function(id, player) {
     myplayer = player;
 });
 
-$('#answer').click(function() {
-    socket.emit('answer');
+socket.on('players', function(players) {
+    $.each(players, function(id, player) {
+        if (id == myid) {
+            myplayer = player;
+
+            $('#myname').text(myplayer.name);
+            $('#myscore').text(myplayer.score);
+        }
+    })
+});
+
+socket.on('answerers', function(answerers) {
+    $.each(answerers, function(i, id) {
+        if (id == myid) {
+            var val = i * 64;
+            $('#player-pane').css('background', 'rgb(255, ' + val + ', ' + val + ')');
+        }
+    });
 });
 
 $(document).keydown(function(e) {
@@ -18,14 +34,18 @@ $(document).keydown(function(e) {
         socket.emit('answer');
 });
 
+socket.on('unpick', function() {
+    $('#player-pane').css('background', '');
+});
+
 socket.on('timer', function(id) {
     if (id == myid)
-        $('body').css('background-color', 'green');
+        $('#player-pane').css('background', 'green');
 });
 
 socket.on('timeout', function(id) {
     if (id == myid)
-        $('body').css('background-color', '');
+        $('#player-pane').css('background', '');
 });
 
 });
