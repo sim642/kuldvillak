@@ -69,7 +69,7 @@ socket.on('pick', function(j, i, question) {
     $cell = $('#grid .values td[data-j="' + j + '"][data-i="' + i + '"]');
     if ($cell.text() != "") {
         $cell.removeClass("active");
-        $("#overlay").text($cell.data('j') + "-" + $cell.data('i') + " " + $cell.text() + " " + question);
+        $("#overlay").text(question);
         $('#players button').show();
 
         $("#overlay-outer").css({

@@ -87,7 +87,7 @@ socket.on('pick', function(j, i, question) {
     $cell = $('#grid .values td[data-j="' + j + '"][data-i="' + i + '"]');
     if ($cell.text() != "") {
         $cell.removeClass("active");
-        $("#overlay").text($cell.data('j') + "-" + $cell.data('i') + " " + $cell.text() + " " + question);
+        $("#overlay").text(question);
         $('#players button').show();
 
         $("#overlay-outer").css({
@@ -127,7 +127,8 @@ socket.on('unpick', function() {
 });
 
 socket.on('answer', function(answer) {
-    $('#overlay').append("<br>" + answer);
+    $span = $('<span></span>').addClass('answer').text(answer);
+    $('#overlay').append("<br>").append($span);
 });
 
 socket.on('answerers', function(answerers) {
