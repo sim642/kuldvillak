@@ -132,10 +132,12 @@ socket.on('answer', function(answer) {
 });
 
 socket.on('answerers', function(answerers) {
-    $.each(answerers, function(i, id) {
-        var val = i * 64;
-        $('#names td[data-id="' + id + '"]').css('background-color', 'rgb(255, ' + val + ', ' + val + ')');
-    });
+    if (answerers) {
+        $.each(answerers, function(i, id) {
+            var val = i * 64;
+            $('#names td[data-id="' + id + '"]').css('background-color', 'rgb(255, ' + val + ', ' + val + ')');
+        });
+    }
 });
 
 socket.on('timer', function(id) {

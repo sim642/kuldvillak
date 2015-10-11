@@ -5,7 +5,7 @@
             "name": "Karu",
             "questions": [
                 {
-                    "question": "asd",
+                    "question": "qwertyuiopasdfghjklzxcvbnmõüäöšž",
                     "answer": "qwe"
                 },
                 {
@@ -30,8 +30,8 @@
             "name": "Siil",
             "questions": [
                 {
-                    "question": "asd",
-                    "answer": "qwe"
+                    "question": "Ta läks mägra majja",
+                    "answer": "Siil"
                 },
                 {
                     "question": "asd",
