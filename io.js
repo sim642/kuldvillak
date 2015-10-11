@@ -69,6 +69,13 @@ io.on('connection', function(socket) {
             return;
 
         players[id].score += (correct ? 1 : -1) * (curi + 1) * 10 * data.multiplier;
+
+        var i = answerers.indexOf(id);
+        if (i >= 0) {
+            answerers.splice(i, 1);
+            io.emit('answerers', answerers);
+        }
+
         io.emit('players', players);
         io.emit('answerers', answerers);
     });
@@ -88,6 +95,14 @@ io.on('connection', function(socket) {
 
         setTimeout(function() {
             io.emit('timeout', id);
+
+            if (answerers) {
+                var i = answerers.indexOf(id);
+                if (i >= 0) {
+                    answerers.splice(i, 1);
+                    io.emit('answerers', answerers);
+                }
+            }
         }, 5000);
     });
 
