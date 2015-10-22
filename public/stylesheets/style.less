@@ -157,6 +157,8 @@ html, body {
     vertical-align: middle;
 
     background: radial-gradient(ellipse, @front, @blue);
+    background: -webkit-radial-gradient(ellipse, @front, @blue); // android
+
     font-size: 20vh;
     font-family: 'Swiss911';
 
@@ -166,6 +168,7 @@ html, body {
 
     #myscore {
         text-shadow: 1.2vh 1.2vh 0 black;
+        -webkit-text-shadow: 1.2vh 1.2vh 0 black;
         letter-spacing: 0.6vh;
         color: @yellow;
     }

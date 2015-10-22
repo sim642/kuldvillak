@@ -34,6 +34,10 @@ $(document).keydown(function(e) {
         socket.emit('answer');
 });
 
+$(document).click(function() {
+    socket.emit('answer');
+})
+
 socket.on('unpick', function() {
     $('#player-pane').css('background', '');
 });
