@@ -32,7 +32,7 @@ io.on('connection', function(socket) {
             socket.join('admin');
 
         io.emit('players', players);
-        io.emit('answerers', answerers);
+        socket.emit('answerers', answerers);
 
         socket.emit('board', data.categories.map(function(category) {
             return category.name;
@@ -50,7 +50,14 @@ io.on('connection', function(socket) {
         curj = j;
         curi = i;
         actives[i][j] = false;
-        answerers = [];
+    });
+
+    socket.on('answering', function() {
+        if (!player.admin)
+            return;
+
+        if (curj !== null && curi !== null) // picked
+            answerers = [];
     });
 
     socket.on('unpick', function() {

@@ -116,6 +116,11 @@ socket.on('pick', function(j, i, question) {
     }
 });
 
+$(document).keydown(function(e) {
+    if (e.which == 32 && $('#overlay-outer').is(":visible")) // space
+        socket.emit('answering');
+});
+
 $("#overlay-outer").click(function() {
     socket.emit('unpick');
 });
