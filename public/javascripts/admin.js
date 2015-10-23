@@ -117,13 +117,17 @@ socket.on('pick', function(j, i, question) {
 });
 
 $(document).keydown(function(e) {
-    if (e.which == 32 && $('#overlay-outer').is(":visible")) // space
-        socket.emit('answering');
+    /*if (e.which == 32 && $('#overlay-outer').is(":visible")) // space
+        socket.emit('answering');*/
 });
 
 $("#overlay-outer").click(function() {
-    socket.emit('unpick');
+    //socket.emit('unpick');
 });
+
+$('#closebutton').click(function() {
+    socket.emit('unpick');
+})
 
 socket.on('unpick', function() {
     $("#overlay-outer").fadeOut();
@@ -134,6 +138,14 @@ socket.on('unpick', function() {
 socket.on('answer', function(answer) {
     $span = $('<span></span>').addClass('answer').text(answer);
     $('#overlay').append("<br>").append($span);
+
+    $button = $('<button></button>').text("go").click(function(e) {
+        e.stopPropagation();
+        $button.css('background-color', 'green');
+        socket.emit("answering");
+    })
+
+    $('#overlay').append("<br>").append($button);
 });
 
 socket.on('answerers', function(answerers) {

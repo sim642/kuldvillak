@@ -173,3 +173,25 @@ html, body {
         color: @yellow;
     }
 }
+
+button {
+    background: lighten(@blue, 75%);
+    color: @blue;
+    border: none;
+    font-size: 1em;
+    border-radius: 0.5em;
+    margin: 0.2em;
+    min-width: 1em;
+    min-height: 1em;
+    cursor: pointer;
+}
+
+#closebutton {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    &:before {
+        content: '\00D7'; // times
+    }
+}
