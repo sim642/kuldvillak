@@ -75,6 +75,9 @@ io.on('connection', function(socket) {
         if (!player.admin)
             return;
 
+        if (answerers === null)
+            return;
+
         players[id].score += (correct ? 1 : -1) * (curi + 1) * 10 * data.multiplier;
 
         var i = answerers.indexOf(id);
