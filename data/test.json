@@ -1,5 +1,6 @@
 {
     "multiplier": 1,
+    "timer": 5,
     "categories": [
         {
             "name": "Karu",

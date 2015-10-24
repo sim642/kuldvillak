@@ -113,7 +113,7 @@ io.on('connection', function(socket) {
                     io.emit('answerers', answerers);
                 }
             }
-        }, 5000);
+        }, data.timer * 1000);
     });
 
     socket.on('disconnect', function() {
