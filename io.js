@@ -117,6 +117,12 @@ io.on('connection', function(socket) {
     });
 
     socket.on('disconnect', function() {
+        if (answerers !== null) {
+            var i = answerers.indexOf(socket.id);
+            if (i >= 0)
+                answerers.splice(i, 1);
+        }
+
         delete players[socket.id];
         player = null;
         io.emit('players', players);

@@ -34,7 +34,7 @@ $(document).keydown(function(e) {
         socket.emit('answer');
 });
 
-$(document).click(function() {
+$(document).on('click touchend', function() {
     socket.emit('answer');
 })
 
