@@ -116,6 +116,24 @@ socket.on('pick', function(j, i, question) {
     }
 });
 
+socket.on('pickfinal', function(question) {
+    $("#overlay").text(question);
+    $('#players button').show();
+
+    $("#overlay-outer").css({
+        "left": "0px",
+        "top": "0px",
+        "width": "100%",
+        "height": 100 * $('#grid-pane').outerHeight() / $(window).height() + '%',
+        "opacity": "0.0",
+        "fontSize": "10vh"
+    }).show();
+
+    $("#overlay-outer").animate({
+        "opacity": "1.0"
+    }, "slow");
+});
+
 $(document).keydown(function(e) {
     /*if (e.which == 32 && $('#overlay-outer').is(":visible")) // space
         socket.emit('answering');*/

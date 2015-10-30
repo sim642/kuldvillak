@@ -12,6 +12,7 @@ for (var i = 0; i < 5; i++)
         row.push(true);
     actives.push(row);
 }
+var final = false;
 
 var curj = null, curi = null;
 var answerers = null;
@@ -58,6 +59,11 @@ io.on('connection', function(socket) {
 
         if (curj !== null && curi !== null) // picked
             answerers = [];
+        else if (final) {
+            io.emit('pickfinal', data.final.question);
+
+            io.to('admin').emit('answer', data.final.answer);
+        }
     });
 
     socket.on('unpick', function() {
@@ -69,6 +75,26 @@ io.on('connection', function(socket) {
         curj = null;
         curi = null;
         answerers = null;
+
+        var done = true;
+        for (var j = 0; j < actives.length; j++)
+        {
+            for (var i = 0; i < actives[j].length; i++)
+            {
+                if (actives[j][i])
+                    done = false;
+            }
+        }
+
+        if (done) {
+            final = true;
+
+            setTimeout(function() {
+                io.emit('pickfinal', data.final.category);
+
+                io.to('admin').emit('answer', "");
+            }, 2000);
+        }
     });
 
     socket.on('score', function(id, correct) {
