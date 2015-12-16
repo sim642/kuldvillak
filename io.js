@@ -87,7 +87,7 @@ io.on('connection', function(socket) {
             }
         }
 
-        if (done) {
+        if (done && data.final) {
             final = true;
 
             setTimeout(function() {
