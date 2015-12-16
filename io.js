@@ -1,7 +1,8 @@
 var io = require('socket.io')();
 var fs = require('fs');
 
-var data = JSON.parse(fs.readFileSync('./data/test.json'));
+var config = JSON.parse(fs.readFileSync('./config.json'));
+var data = JSON.parse(fs.readFileSync('./data/' + config.data + '.json'));
 var players = {};
 
 var actives = [];
@@ -24,7 +25,7 @@ io.on('connection', function(socket) {
         player = players[socket.id] = {
             name: name,
             score: 0,
-            admin: name == 'admin' // TODO: add more security
+            admin: name == config.adminName
         };
 
         callback(socket.id, player);

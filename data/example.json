@@ -1,0 +1,161 @@
+{
+    "multiplier": 1,
+    "timer": 5,
+    "categories": [
+        {
+            "name": "Kategooria 1",
+            "questions": [
+                {
+                    "question": "Küsimus 1.1",
+                    "answer": "Vastus 1.1"
+                },
+                {
+                    "question": "Küsimus 1.2",
+                    "answer": "Vastus 1.2"
+                },
+                {
+                    "question": "Küsimus 1.3",
+                    "answer": "Vastus 1.3"
+                },
+                {
+                    "question": "Küsimus 1.4",
+                    "answer": "Vastus 1.4"
+                },
+                {
+                    "question": "Küsimus 1.5",
+                    "answer": "Vastus 1.5"
+                }
+            ]
+        },
+        {
+            "name": "Kategooria 2",
+            "questions": [
+                {
+                    "question": "Küsimus 2.1",
+                    "answer": "Vastus 2.1"
+                },
+                {
+                    "question": "Küsimus 2.2",
+                    "answer": "Vastus 2.2"
+                },
+                {
+                    "question": "Küsimus 2.3",
+                    "answer": "Vastus 2.3"
+                },
+                {
+                    "question": "Küsimus 2.4",
+                    "answer": "Vastus 2.4"
+                },
+                {
+                    "question": "Küsimus 2.5",
+                    "answer": "Vastus 2.5"
+                }
+            ]
+        },
+        {
+            "name": "Kategooria 3",
+            "questions": [
+                {
+                    "question": "Küsimus 3.1",
+                    "answer": "Vastus 3.1"
+                },
+                {
+                    "question": "Küsimus 3.2",
+                    "answer": "Vastus 3.2"
+                },
+                {
+                    "question": "Küsimus 3.3",
+                    "answer": "Vastus 3.3"
+                },
+                {
+                    "question": "Küsimus 3.4",
+                    "answer": "Vastus 3.4"
+                },
+                {
+                    "question": "Küsimus 3.5",
+                    "answer": "Vastus 3.5"
+                }
+            ]
+        },
+        {
+            "name": "Kategooria 4",
+            "questions": [
+                {
+                    "question": "Küsimus 4.1",
+                    "answer": "Vastus 4.1"
+                },
+                {
+                    "question": "Küsimus 4.2",
+                    "answer": "Vastus 4.2"
+                },
+                {
+                    "question": "Küsimus 4.3",
+                    "answer": "Vastus 4.3"
+                },
+                {
+                    "question": "Küsimus 4.4",
+                    "answer": "Vastus 4.4"
+                },
+                {
+                    "question": "Küsimus 4.5",
+                    "answer": "Vastus 4.5"
+                }
+            ]
+        },
+        {
+            "name": "Kategooria 5",
+            "questions": [
+                {
+                    "question": "Küsimus 5.1",
+                    "answer": "Vastus 5.1"
+                },
+                {
+                    "question": "Küsimus 5.2",
+                    "answer": "Vastus 5.2"
+                },
+                {
+                    "question": "Küsimus 5.3",
+                    "answer": "Vastus 5.3"
+                },
+                {
+                    "question": "Küsimus 5.4",
+                    "answer": "Vastus 5.4"
+                },
+                {
+                    "question": "Küsimus 5.5",
+                    "answer": "Vastus 5.5"
+                }
+            ]
+        },
+        {
+            "name": "Kategooria 6",
+            "questions": [
+                {
+                    "question": "Küsimus 6.1",
+                    "answer": "Vastus 6.1"
+                },
+                {
+                    "question": "Küsimus 6.2",
+                    "answer": "Vastus 6.2"
+                },
+                {
+                    "question": "Küsimus 6.3",
+                    "answer": "Vastus 6.3"
+                },
+                {
+                    "question": "Küsimus 6.4",
+                    "answer": "Vastus 6.4"
+                },
+                {
+                    "question": "Küsimus 6.5",
+                    "answer": "Vastus 6.5"
+                }
+            ]
+        }
+    ],
+    "final": {
+        "category": "Lõpukategooria",
+        "question": "Lõpuküsimus",
+        "answer": "Lõpuvastus"
+    }
+}
