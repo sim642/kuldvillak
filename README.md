@@ -1,5 +1,12 @@
 # kuldvillak
 
+## Allalaadimine
+
+### Windows
+1. Mine lehele https://github.com/sim642/kuldvillak/releases
+2. Leia sealt link kujul "kuldvillak-1.0.0.zip" ning lae see alla.
+3. Paki allalaetud .zip fail lahti.
+
 ## Seadistamine
 
 ### Küsimuste loomine
